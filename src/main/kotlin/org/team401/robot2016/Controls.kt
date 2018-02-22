@@ -18,6 +18,20 @@ import org.team401.robot2016.subsystems.*
  */
 
 val Gamepad = HumanControls.f310(0) {
+    whenButton(Buttons.START) {
+        pressed {
+            DrivetrainSubsystem.machine(DRIVE_MACHINE).setState(DriveStates.DRIVE)
+            ShooterSubsystem.machine(SHOOTER_MACHINE).setState(ShooterStates.SHOOT)
+        }
+    }
+
+    whenButton(Buttons.BACK) {
+        pressed {
+            DrivetrainSubsystem.machine(DRIVE_MACHINE).setState(DriveStates.DRIVE_REDUCED)
+            ShooterSubsystem.machine(SHOOTER_MACHINE).setState(ShooterStates.SHOOT_REDUCED)
+        }
+    }
+
     whenButton(Buttons.B) {
         pressed {
             ShooterSubsystem.machine(KICKER_MACHINE).setState(KickerStates.KICK)
