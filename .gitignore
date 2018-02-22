@@ -1,0 +1,13 @@
+
+\.gradle/
+
+\.idea/
+
+\build/
+
+build/classes/kotlin/main/META-INF/
+
+
+*.class
+
+*.iml

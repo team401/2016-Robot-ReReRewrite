@@ -22,9 +22,9 @@ object Constants {
         const val DRIVE_RIGHT_2 = 4
         const val DRIVE_RIGHT_3 = 5
 
-        const val ARM = 6
-        const val SHOOTER_LEFT = 7
-        const val SHOOTER_RIGHT = 8
+        const val SHOOTER_LEFT = 6
+        const val SHOOTER_RIGHT = 7
+        const val ARM = 8
     }
 
     object Pneumatics {

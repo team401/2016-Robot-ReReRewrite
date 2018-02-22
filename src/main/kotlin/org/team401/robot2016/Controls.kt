@@ -25,6 +25,7 @@ val Gamepad = HumanControls.f310(0) {
         released {
             ShooterSubsystem.machine(KICKER_MACHINE).setState(KickerStates.STOW)
         }
+
     }
 
     whenButton(Buttons.LEFT_STICK) {
