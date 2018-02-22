@@ -18,6 +18,7 @@ import org.team401.robot2016.subsystems.*
  */
 
 val Gamepad = HumanControls.f310(0) {
+    invertAxis(Axes.RIGHT_X)
     whenButton(Buttons.START) {
         pressed {
             DrivetrainSubsystem.machine(DRIVE_MACHINE).setState(DriveStates.DRIVE)
