@@ -1,5 +1,6 @@
 package org.team401.robot2016.subsystems
 
+import edu.wpi.first.wpilibj.Counter
 import edu.wpi.first.wpilibj.Jaguar
 import org.snakeskin.dsl.*
 import org.snakeskin.event.Events
@@ -27,11 +28,26 @@ object ArmStates {
 
 val ArmSubsystem: Subsystem = buildSubsystem {
     val motor = Jaguar(Constants.MotorControllers.ARM)
+    val topSensor = Counter(1)
+    val bottomSensor = Counter(0)
 
     val armMachine = stateMachine(ARM_MACHINE) {
         state (ArmStates.MOVE) {
+            var desiredDrive: Double
             action {
-                motor.set(Gamepad.readAxis { RIGHT_Y } * Constants.ArmParameters.ARM_REDUCTION)
+                println("top count: " + topSensor.get())
+                desiredDrive = Gamepad.readAxis { RIGHT_Y }
+                if (topSensor.get() > 0 && desiredDrive <= 0){
+                    desiredDrive = 0.0
+                } else if (bottomSensor.get() > 0 && desiredDrive >= 0){
+                    desiredDrive = 0.0
+                }
+                else {
+                    topSensor.reset()
+                    bottomSensor.reset()
+                }
+
+                motor.set(desiredDrive * Constants.ArmParameters.ARM_REDUCTION)
             }
         }
 
